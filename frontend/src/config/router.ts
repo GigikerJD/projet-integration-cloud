@@ -65,7 +65,7 @@ router.beforeEach((to, _) => {
     return "/";
   }
 
-  if (to.meta.requiresAuth && store.getLoggedIn) {
+  if (!to.meta.requiresAuth && store.getLoggedIn && to.name === "forms") {
     return "/dashboard";
   }
 });

@@ -3,10 +3,10 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
-import { connectDB } from "./src/config/database";
-import { authRoutes } from "./src/routes/authRoutes";
-import { userRoutes } from "./src/routes/userRoutes";
-import { taskRoutes } from "./src/routes/taskRoutes";
+import { connectDB } from "./config/database";
+import { authRoutes } from "./routes/authRoutes";
+import { userRoutes } from "./routes/userRoutes";
+import { taskRoutes } from "./routes/taskRoutes";
 
 const app = express();
 
