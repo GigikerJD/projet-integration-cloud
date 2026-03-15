@@ -1,0 +1,41 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "4001:4001"
+    environment:
+      PORT: 4001
+      MONGO_URI: mongodb://mongodb:27017/cloud-taskmanager
+    depends_on:
+      - mongodb
+  
+  backend1:
+    build: ./backend1
+    container_name: backend1
+    ports:
+      - "4002:4002"
+    environment:
+      PORT: 4002
+      MONGO_URI: "mongodb://mongodb:27017/cloud-taskmanager"
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongodb-data:
